@@ -1,0 +1,45 @@
+skin of body
+thymus
+parotid gland
+aorta
+cardiac atrium
+tongue
+skin of chest
+large intestine
+liver
+sublingual gland
+conjunctiva
+lymph node
+rectus abdominis muscle
+lacrimal gland
+lung
+eye
+endometrium
+vasculature
+anterior part of tongue
+skin of abdomen
+cardiac ventricle
+blood
+myometrium
+posterior part of tongue
+bone marrow
+trachea
+cornea
+mammary gland
+sclera
+spleen
+small intestine
+inguinal lymph node
+uterus
+muscle tissue
+coronary artery
+endocrine pancreas
+exocrine pancreas
+retinal neural layer
+kidney
+bladder organ
+prostate gland
+subcutaneous adipose tissue
+muscle of pelvic diaphragm
+muscle of abdomen
+adipose tissue
