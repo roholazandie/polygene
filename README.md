@@ -1,7 +1,8 @@
 [![Preprint](https://img.shields.io/badge/preprint-available-brightgreen)](https://www.biorxiv.org/content/10.1101/2023.04.30.538439) &nbsp;
 [![Documentation](https://img.shields.io/badge/docs-available-brightgreen)](https://scgpt.readthedocs.io/en/latest/) &nbsp;
-[![PyPI version](https://badge.fury.io/py/scgpt.svg)](https://badge.fury.io/py/scgpt) &nbsp;
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/username/repo/blob/main/LICENSE)
+
+[//]: # ([![DOI]&#40;https://zenodo.org/badge/DOI/10.5281/zenodo.5560007.svg&#41;]&#40;&#41;)
 # Polygene
 This is the official codebase for **Multimodal Learning for Mapping the Genotype-Phenotype Dynamics**
 
