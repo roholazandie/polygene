@@ -1,0 +1,19 @@
+{
+    "pretrained_model_name_or_path": "checkpoints/pretrained/binned/bert/all_features_checkpoints_2432/checkpoint-170200",
+    "phenotypic_tokens_file": "data/phenotypic_vocab",
+    "eval_batch_size": 10,
+    "train_data_path": "file:///home/rohola/TabulaSapiens/ranked/Tabula_Sapiens_ranked_{0..45}.h5ad",
+    "eval_data_path": "file:///home/rohola/TabulaSapiens/ranked/Tabula_Sapiens_ranked_{46..47}.h5ad",
+    "max_length": 2440,
+    "shard_size": 10000,
+    "n_highly_variable_genes": 2432,
+    "expression_max_value": 10.0,
+    "expression_min_value": 0.0,
+    "threshold": 0.1,
+    "num_bins": 10,
+    "filter_phenotypes": {
+        "tissue": ["muscle tissue", "muscle of abdomen", "spleen"]
+    },
+    "binary_expression": false,
+    "device": "cuda"
+}

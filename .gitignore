@@ -167,7 +167,6 @@ gene_data
 /api_key
 *.png
 *.json
-configs/.DS_Store
 
 *.sqlite
 

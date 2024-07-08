@@ -1,0 +1,22 @@
+{
+    "pretrained_model_path": "",
+    "n_epochs": 100,
+    "train_batch_size": 10,
+    "eval_batch_size": 10,
+    "learning_rate": 2e-5,
+    "shard_size": 10000,
+    "train_data_path": "file:///home/rohola/TabulaSapiens/ranked/Tabula_Sapiens_ranked_{0..45}.h5ad",
+    "eval_data_path": "file:///home/rohola/TabulaSapiens/ranked/Tabula_Sapiens_ranked_{46..47}.h5ad",
+    "summary_embeddings_file": "data/pooler_output_hidden_states.pt",
+    "output_dir": "",
+    "max_length": 2434,
+    "n_highly_variable_genes": 2432,
+    "save_steps": 0.1,
+    "expression_max_value": 10.0,
+    "expression_min_value": 0.0,
+    "threshold": 0.1,
+    "label": "tissue",
+    "num_bins": 2,
+    "binary_expression": true,
+    "device": "cuda"
+}

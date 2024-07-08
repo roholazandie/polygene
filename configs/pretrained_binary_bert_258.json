@@ -1,0 +1,23 @@
+{
+    "model_name": "bert",
+    "special_tokens_file": "data/vocab/special_tokens.txt",
+    "n_epochs": 30,
+    "train_batch_size": 200,
+    "eval_batch_size": 200,
+    "learning_rate": 2e-5,
+    "shard_size": 10000,
+    "train_data_path": "file:///home/rohola/TabulaSapiens/ranked/Tabula_Sapiens_ranked_{0..45}.h5ad",
+    "eval_data_path": "file:///home/rohola/TabulaSapiens/ranked/Tabula_Sapiens_ranked_{46..47}.h5ad",
+    "summary_embeddings_file": "data/pooler_output_hidden_states.pt",
+    "output_dir": "checkpoints/pretrained/binary/bert/checkpoints",
+    "max_length": 258,
+    "n_highly_variable_genes": 256,
+    "save_steps": 0.1,
+    "expression_max_value": 10.0,
+    "expression_min_value": 0.0,
+    "threshold": 0.5,
+    "sequence_types": ["sex", "age"],
+    "num_bins": 2,
+    "binary_expression": true,
+    "device": "cuda"
+}

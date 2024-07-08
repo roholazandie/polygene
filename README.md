@@ -59,6 +59,26 @@ Install the requirements:
 pip install -r requirements.txt
 ```
 
+## Tutorial
+### Training
+To train the model, you can use the following command:
+```bash
+python train_gene_sequence.py
+```
+make sure to set the ``configs/pretrained_binary_bert_2432.json`` or any other configs in the configs folder in the script.
+For logging the results you need to setup a wandb account and set the ``WANDB_API_KEY`` in the environment variables.
+
+### Evaluation
+To evaluate the model, you can use the following command:
+```bash
+python inference_gene_bert.py
+```
+make sure to set the right inference configs in the script. The ``pretrained_model_name_or_path`` should be
+set to the folder containing the model and the tokenizer.
+
+
+
+
 
 ## Pretrained Polygene models
 Here is a list of pretrained models for Polygene of different sizes:
