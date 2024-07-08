@@ -1,4 +1,4 @@
-[![Preprint](https://img.shields.io/badge/preprint-available-brightgreen)](https://www.biorxiv.org/content/10.1101/2023.04.30.538439) &nbsp;
+[![Preprint](https://img.shields.io/badge/preprint-available-brightgreen)](https://doi.org/10.21203/rs.3.rs-4355413/v1) &nbsp;
 [![Documentation](https://img.shields.io/badge/docs-available-brightgreen)](https://scgpt.readthedocs.io/en/latest/) &nbsp;
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/username/repo/blob/main/LICENSE)
 
