@@ -63,21 +63,71 @@ pip install -r requirements.txt
 ### Training
 To train the model, you can use the following command:
 ```bash
-python train_gene_sequence.py
+#!/bin/bash
+export CUDA_VISIBLE_DEVICES=0
+
+python train_gene_sequence.py \
+    --model_name "bert" \
+    --phenotypic_tokens_file "data/phenotypic_vocab" \
+    --n_epochs 100 \
+    --train_batch_size 9 \
+    --eval_batch_size 8 \
+    --learning_rate 2e-5 \
+    --hidden_size 64 \
+    --num_hidden_layers 12 \
+    --num_attention_heads 12 \
+    --shard_size 10000 \
+    --train_data_path "file:///TabulaSapiens/ranked/Tabula_Sapiens_ranked_{0..46}.h5ad" \
+    --eval_data_path "file:///TabulaSapiens/ranked/Tabula_Sapiens_ranked_47.h5ad" \
+    --output_dir "checkpoints/pretrained/binned/bert/all_except_age_features_checkpoints" \
+    --max_length 2440 \
+    --n_highly_variable_genes 2432 \
+    --save_steps 0.01 \
+    --expression_max_value 10.0 \
+    --expression_min_value 0.0 \
+    --threshold 0.1 \
+    --mlm_probability 0.15 \
+    --phenotypic_mlm_probability 0.5 \
+    --num_bins 10 \
+    --sequence_types sex tissue cell_type disease \
+    --device "cuda"
 ```
-make sure to set the ``configs/pretrained_binary_bert_2432.json`` or any other configs in the configs folder in the script.
+change the ``train_data_path`` and ``eval_data_path`` to the path of the dataset. The dataset should be in the h5ad format.
 For logging the results you need to setup a wandb account and set the ``WANDB_API_KEY`` in the environment variables.
 
 ### Evaluation
 To evaluate the model, you can use the following command:
 ```bash
-python inference_gene_bert.py
+#!/bin/bash
+export CUDA_VISIBLE_DEVICES=0
+
+python inference_gene_sequence.py \
+    --model_name "checkpoints/pretrained/binned/bert/all_features_checkpoints_2432/checkpoint-170200" \
+    --phenotypic_tokens_file "data/phenotypic_vocab" \
+    --n_epochs 100 \
+    --train_batch_size 9 \
+    --eval_batch_size 8 \
+    --learning_rate 2e-5 \
+    --hidden_size 64 \
+    --num_hidden_layers 12 \
+    --num_attention_heads 12 \
+    --shard_size 10000 \
+    --train_data_path "file:///TabulaSapiens/ranked/Tabula_Sapiens_ranked_{0..46}.h5ad" \
+    --eval_data_path "file:///TabulaSapiens/ranked/Tabula_Sapiens_ranked_47.h5ad" \
+    --output_dir "checkpoints/pretrained/binned/bert/all_except_age_features_checkpoints" \
+    --max_length 2440 \
+    --n_highly_variable_genes 2432 \
+    --save_steps 0.01 \
+    --expression_max_value 10.0 \
+    --expression_min_value 0.0 \
+    --threshold 0.1 \
+    --mlm_probability 0.15 \
+    --phenotypic_mlm_probability 0.5 \
+    --num_bins 10 \
+    --sequence_types sex tissue cell_type disease \
+    --device "cuda"
 ```
-make sure to set the right inference configs in the script. The ``pretrained_model_name_or_path`` should be
-set to the folder containing the model and the tokenizer.
-
-
-
+make sure to change the ``model_name`` to the path of the model checkpoint and the ``train_data_path`` and ``eval_data_path`` to the path of the dataset. The dataset should be in the h5ad format.
 
 
 ## Pretrained Polygene models

@@ -1,34 +1,23 @@
-import logging
-# logging.basicConfig(level=logging.DEBUG)
+import argparse
 
-# from datasets import load_metric
-# from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 import pandas as pd
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-# import torch
 from transformers import (
     BertConfig,
-    BertForMaskedLM,
     Trainer,
     TrainingArguments,
-    set_seed, RobertaConfig, RobertaForMaskedLM, XLNetConfig, EvalPrediction, Seq2SeqTrainer,
+    set_seed, EvalPrediction,
 )
-# import torch.optim as optim
 import os
 import numpy as np
-# from transformers.models.xlnet.modeling_xlnet import XLNetFeedForward
 
 import wandb
 
-# from data_utils import DistributedAnnDataCollection, IterableDistributedAnnDataCollectionDataset
 from data_utils.dadc_dataset import get_dataset
 from gene_bert import GeneBertForMaskedLM
 from gene_tokenizer import GeneTokenizer
 from utils.utils import load_pretraining_config, parse_args
 from utils.data_collators import DataCollatorForLanguageModeling
-
 
 
 def calculate_confusion_matrix(predictions, labels, num_labels):
@@ -89,24 +78,6 @@ def compute_metrics(p: EvalPrediction):
     # # Save DataFrame to CSV
     df_cm.to_csv(f'{working_dir}/confusion_matrix_{trainer.state.global_step}.csv')
 
-    # # Plotting the confusion matrix
-    # plt.figure(figsize=(17, 17))
-    # sns.heatmap(df_cm, annot=True, cmap='Blues', fmt='g', annot_kws={"size": 6})  # Adjust font size as needed
-    # plt.title('Confusion Matrix', fontsize=16)
-    # plt.ylabel('True Label', fontsize=14)
-    # plt.xlabel('Predicted Label', fontsize=12)
-    #
-    # # Adjust the position of the plot in the figure to give more space for labels
-    # plt.subplots_adjust(bottom=0.15, left=0.15)
-    #
-    # # Optionally, rotate labels for better readability
-    # plt.xticks(rotation=45, ha='right', fontsize=14)
-    #
-    # # Save plot to file
-    # plt.savefig(f'{working_dir}/confusion_matrix_{trainer.state.global_step}.png')
-
-
-
     # Calculate precision and recall
     # Note: Set average='macro' for macro-average (average over classes)
     # Use zero_division=0 to handle cases where there is no true or predicted samples for a class
@@ -124,14 +95,13 @@ def compute_metrics(p: EvalPrediction):
     precision = precision_score(labels_flat, predictions_flat, average='macro', zero_division=0)
     recall = recall_score(labels_flat, predictions_flat, average='macro', zero_division=0)
 
-
     return {
-            "accuracy": accuracy,
-            "precision": precision,
-            "recall": recall,
-            "accuracy_all": accuracy_all,
-            "precision_all": precision_all,
-            "recall_all": recall_all
+        "accuracy": accuracy,
+        "precision": precision,
+        "recall": recall,
+        "accuracy_all": accuracy_all,
+        "precision_all": precision_all,
+        "recall_all": recall_all
     }
 
 
@@ -139,7 +109,6 @@ if __name__ == "__main__":
     # Set up the Trainer
     set_seed(42)
 
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'configs/credentials.json'
     config = parse_args()
 
     # the input sequence has the following format:
@@ -157,7 +126,7 @@ if __name__ == "__main__":
     # model_name is either "bert" or "roberta"
     # max_length is the maximum length of the input sequence
     # os.environ["WANDB_MODE"] = "disabled"  # turn off wandb
-    os.environ["WANDB_PROJECT"] = "test_train"  # log to your project
+    os.environ["WANDB_PROJECT"] = "test_inference"  # log to your project
     os.environ["WANDB_LOG_MODEL"] = "all"  # log your models
 
     # sample vocab
@@ -210,10 +179,9 @@ if __name__ == "__main__":
                              # num_attention_heads=config.num_attention_heads,
                              )
 
-    model = GeneBertForMaskedLM(config=bert_config).to(device)
+    model = GeneBertForMaskedLM.from_pretrained(config.model_name).to(device)
 
     working_dir = f"{config.output_dir}_{config.n_highly_variable_genes}"
-
 
     training_args = TrainingArguments(
         output_dir=working_dir,
@@ -246,11 +214,6 @@ if __name__ == "__main__":
         data_collator=data_collator,
         compute_metrics=compute_metrics,
     )
-
-
-    # Train the model
-    # trainer.train(resume_from_checkpoint=True)
-    trainer.train()
 
     # Evaluate the model
     trainer.evaluate()

@@ -1,9 +1,9 @@
 {
-    "model_name": "bert",
+    "model_name": "/home/rohola/codes/transformeromics/checkpoints/pretrained/binned/bert/all_features_checkpoints_2432/checkpoint-170200",
     "phenotypic_tokens_file": "data/phenotypic_vocab",
     "n_epochs": 100,
     "train_batch_size": 9,
-    "eval_batch_size": 5,
+    "eval_batch_size": 80,
     "learning_rate": 2e-5,
     "hidden_size": 64,
     "num_hidden_layers": 12,
