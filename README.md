@@ -1,5 +1,6 @@
 [![Preprint](https://img.shields.io/badge/preprint-available-brightgreen)](https://doi.org/10.21203/rs.3.rs-4355413/v1) &nbsp;
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/username/repo/blob/main/LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14188129.svg)](https://doi.org/10.5281/zenodo.14188129)
 
 [//]: # ([![DOI]&#40;https://zenodo.org/badge/DOI/10.5281/zenodo.5560007.svg&#41;]&#40;&#41;)
 # Polygene
